@@ -80,4 +80,4 @@ From the root of the `data-structures-and-algorithms/python` folder, execute the
 ### Table of contents
 
 1. [Reversing a list](docs/list_reverse/README.md)
-2.
+2. []
