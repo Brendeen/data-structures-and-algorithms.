@@ -67,6 +67,30 @@ class LinkedList:
 
         raise TargetError(target_value + " does not exist")
 
+    def kth_from_end(self, k):
+        if not self.head:
+            raise TargetError("List is empty")
+        if k < 0:
+            raise TargetError("Index out of bounds")
+
+        # First, find the length of the linked list
+        length = 0
+        current_node = self.head
+        while current_node:
+            length += 1
+            current_node = current_node.next
+
+        # Check if k is out of bounds
+        if k >= length:
+            raise TargetError("Index out of bounds")
+
+        # Traverse the list to the (length - k - 1)th node
+        current_node = self.head
+        for i in range(length - k - 1):
+            current_node = current_node.next
+
+        return current_node.value
+
     def includes(self, value):
         current_node = self.head
         while current_node:
