@@ -104,14 +104,14 @@ class LinkedList:
         string = ""
         if current_node is None:
             return "NULL"
-        # elif current_node is self.head:
-        #     return "{ " + current_node.value + " } -> NULL"
-        # elif current_node is self.head.next:
-        #     return "{ " + current_node.value + " } -> { " + current_node.next.value + " } -> NULL"
         else:
+            if type(current_node.value) != str:
+                current_node.value = str(current_node.value)
             string = "{ " + current_node.value + " }"
             current_node = current_node.next
             while current_node:
+                if type(current_node.value) != str:
+                    current_node.value = str(current_node.value)
                 string += " -> { " + current_node.value + " }"
                 current_node = current_node.next
             string += " -> NULL"
