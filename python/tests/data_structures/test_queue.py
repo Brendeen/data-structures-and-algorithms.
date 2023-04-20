@@ -7,7 +7,7 @@ def test_exists():
     assert Queue
 
 
-@pytest.mark.skip("TODO")
+# @pytest.mark.skip("TODO")
 def test_enqueue():
     q = Queue()
     q.enqueue("apple")
@@ -16,7 +16,7 @@ def test_enqueue():
     assert actual == expected
 
 
-@pytest.mark.skip("TODO")
+# @pytest.mark.skip("TODO")
 def test_dequeue():
     q = Queue()
     q.enqueue("apple")
@@ -26,7 +26,7 @@ def test_dequeue():
     assert actual == expected
 
 
-@pytest.mark.skip("TODO")
+# @pytest.mark.skip("TODO")
 def test_peek():
     q = Queue()
     q.enqueue("apple")
@@ -37,14 +37,14 @@ def test_peek():
     assert actual == expected
 
 
-@pytest.mark.skip("TODO")
+# @pytest.mark.skip("TODO")
 def test_peek_when_empty():
     q = Queue()
     with pytest.raises(InvalidOperationError):
         q.peek()
 
 
-@pytest.mark.skip("TODO")
+# @pytest.mark.skip("TODO")
 def test_enqueue_one():
     q = Queue()
     q.enqueue("apples")
@@ -53,7 +53,7 @@ def test_enqueue_one():
     assert actual == expected
 
 
-@pytest.mark.skip("TODO")
+# @pytest.mark.skip("TODO")
 def test_enqueue_two():
     q = Queue()
     q.enqueue("apples")
@@ -63,14 +63,14 @@ def test_enqueue_two():
     assert actual == expected
 
 
-@pytest.mark.skip("TODO")
+# @pytest.mark.skip("TODO")
 def test_dequeue_when_empty():
     q = Queue()
     with pytest.raises(InvalidOperationError):
         q.dequeue()
 
 
-@pytest.mark.skip("TODO")
+# @pytest.mark.skip("TODO")
 def test_dequeue_when_full():
     q = Queue()
     q.enqueue("apples")
@@ -80,7 +80,7 @@ def test_dequeue_when_full():
     assert actual == expected
 
 
-@pytest.mark.skip("TODO")
+# @pytest.mark.skip("TODO")
 def test_peek_post_dequeue():
     q = Queue()
     q.enqueue("apples")
@@ -91,7 +91,7 @@ def test_peek_post_dequeue():
     assert actual == expected
 
 
-@pytest.mark.skip("TODO")
+# @pytest.mark.skip("TODO")
 def test_is_empty():
     q = Queue()
     actual = q.is_empty()
@@ -99,7 +99,7 @@ def test_is_empty():
     assert actual == expected
 
 
-@pytest.mark.skip("TODO")
+# @pytest.mark.skip("TODO")
 def test_exhausted():
     q = Queue()
     q.enqueue("apple")
@@ -110,4 +110,29 @@ def test_exhausted():
     q.dequeue()
     actual = q.is_empty()
     expected = True
+    assert actual == expected
+
+
+def test_peek_after_enqueue():
+    q = Queue()
+    q.enqueue("apples")
+    q.peek()
+    actual = q.peek()
+    expected = "apples"
+    assert actual == expected
+
+
+def test_enqueue_and_dequeue():
+    q = Queue()
+    q.enqueue("apple")
+    q.enqueue("banana")
+    q.enqueue("cucumber")
+    actual = q.dequeue()
+    expected = "apple"
+    assert actual == expected
+    actual = q.dequeue()
+    expected = "banana"
+    assert actual == expected
+    actual = q.dequeue()
+    expected = "cucumber"
     assert actual == expected
