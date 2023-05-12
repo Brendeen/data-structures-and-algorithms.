@@ -15,8 +15,9 @@ def test_max_val():
     assert actual == expected
 
 
-# def test_max_val_2():
-#     tree = BinaryTree()
-#     tree.root = Node(15)
-#     tree.root.left = Node(30)
-#     tree.root.right = Node(3)
+def test_max_no_val():
+    tree = BinaryTree()
+    tree.root = None
+    actual = tree.find_maximum_value()
+    expected = None
+    assert actual == expected
