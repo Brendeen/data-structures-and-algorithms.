@@ -26,7 +26,7 @@ class Queue:
             self.tail.next = new_node
             self.tail = new_node
         self.length += 1
-        return self.front.value
+        return self
 
     def dequeue(self):
         if self.front is None:
