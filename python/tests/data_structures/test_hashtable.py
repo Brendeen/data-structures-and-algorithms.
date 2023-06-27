@@ -5,30 +5,53 @@ from data_structures.hashtable import Hashtable
 def test_exists():
     assert Hashtable
 
-
-@pytest.mark.skip("TODO")
-def test_get_apple():
-    hashtable = Hashtable()
-    hashtable.set("apple", "Used for apple sauce")
-    actual = hashtable.get("apple")
-    expected = "Used for apple sauce"
-    assert actual == expected
+@pytest.fixture
+def hashtable():
+    return Hashtable()
 
 
-@pytest.mark.skip("TODO")
-def test_internals():
-    hashtable = Hashtable(1024)
-    hashtable.set("ahmad", 30)
-    hashtable.set("silent", True)
-    hashtable.set("listen", "to me")
+def test_set_and_get(hashtable):
+    hashtable.set("key1", "value1")
+    hashtable.set("key2", "value2")
 
-    actual = []
+    assert hashtable.get("key1") == "value1"
+    assert hashtable.get("key2") == "value2"
 
-    # NOTE: purposely breaking encapsulation to test the "internals" of Hashmap
-    for item in hashtable._buckets:
-        if item:
-            actual.append(item.display())
 
-    expected = [[["silent", True], ["listen", "to me"]], [["ahmad", 30]]]
+def test_get_nonexistent_key(hashtable):
+    assert hashtable.get("nonexistent_key") is None
 
-    assert actual == expected
+
+def test_keys(hashtable):
+    hashtable.set("key1", "value1")
+    hashtable.set("key2", "value2")
+    hashtable.set("key3", "value3")
+
+    keys = hashtable.keys()
+    assert len(keys) == 3
+    assert "key1" in keys
+    assert "key2" in keys
+    assert "key3" in keys
+
+
+def test_collision(hashtable):
+    hashtable.set("key1", "value1")
+    hashtable.set("key2", "value2")
+
+    # Trigger a collision by setting a key that hashes to the same index
+    hashtable.set("k1", "value3")
+
+    # Test retrieval of values after collision
+    assert hashtable.get("key1") == "value1"
+    assert hashtable.get("key2") == "value2"
+    assert hashtable.get("k1") == "value3"
+
+
+def test_hash_range(hashtable):
+    key = "test_key"
+    index = hashtable.hash(key)
+    size = hashtable.size
+
+    assert index >= 0
+    assert index < size
+
